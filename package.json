@@ -1,16 +1,20 @@
 {
   "name": "jack-utils",
-  "version": "1.0.0",
+  "version": "1.0.13",
   "description": "",
-  "main": "index.js",
-  "type": "module",
+  "main": "lib/index.js",
   "scripts": {
-    "test": "tap ./test/*.js"
+    "test": "tap ./test/*.js",
+    "build": "babel ./src --out-dir ./lib"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@babel/cli": "^7.19.3",
+    "@babel/core": "^7.20.2",
+    "@babel/preset-env": "^7.20.2",
+    "@trendmicro/babel-config": "^1.0.2",
     "tap": "^16.3.2"
   }
 }
