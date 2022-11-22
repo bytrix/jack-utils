@@ -12,12 +12,22 @@ const initConfig = (config) => {
 const exploreTreeData = (tree, config = {}) => {
     initConfig(config)
     let index = 0
-    let root = tree[0]
+    let root
     let stack = []
     let result = []
+    if(tree.length === 1) {
+        // 单根节点（取唯一一个根节点，并打印根节点）
+        root= tree[0]
+        result.push(root[config.key])
+    } else if(tree.length > 1) {
+        // 多根节点（设置一个虚拟根节点，且不打印根节点）
+        root = {
+            [config.key]: '<root>',
+            children: tree
+        }
+    }
     // 根节点入栈
     stack.push([root, index])
-    result.push(root[config.key])
     // 如果栈不为空
     while(stack.length > 0) {
         // 弹出栈顶元素，并将其设置为当前根节点
@@ -28,6 +38,7 @@ const exploreTreeData = (tree, config = {}) => {
             const isNeedToPush = config.callback(currentRootNode.children, index)
             if(!isNeedToPush) {
                 currentRootNode.children.splice(index, 1)
+                continue
             }
             // 打印子节点
             if(isNeedToPush) {
