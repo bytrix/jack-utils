@@ -1,0 +1,333 @@
+export default [{
+	"campaignType": "sponsoredProducts",
+	"bidding": {
+		"adjustments": [{
+			"predicate": "placementTop",
+			"percentage": 10
+		}],
+		"strategy": "manual"
+	},
+	"campaignId": 118652949133384,
+	"premiumBidAdjustment": true,
+	"dailyBudget": 15,
+	"profileId": 2490426330284584,
+	"name": "咀嚼14P-puppy chew toys - 单开",
+	"targetingType": "manual",
+	"id": "637bfd259ea47a28ed804bd2",
+	"state": "enabled",
+	"startDate": "20221009",
+	"title": "咀嚼14P-puppy chew toys - 单开",
+	"children": [{
+		"campaignId": 118652949133384,
+		"profileId": 2490426330284584,
+		"name": "咀嚼14P-puppy chew toys-单开",
+		"id": "637bfd269ea47a28ed804c4e",
+		"state": "enabled",
+		"adGroupId": 85362647841574,
+		"defaultBid": 1.4,
+		"title": "咀嚼14P-puppy chew toys-单开"
+	}]
+}, {
+	"campaignType": "sponsoredProducts",
+	"bidding": {
+		"adjustments": [],
+		"strategy": "manual"
+	},
+	"campaignId": 145077010061493,
+	"premiumBidAdjustment": false,
+	"dailyBudget": 10,
+	"profileId": 2490426330284584,
+	"name": "咀嚼14P-精准小词",
+	"targetingType": "manual",
+	"id": "637bfd259ea47a28ed804bd9",
+	"state": "enabled",
+	"startDate": "20210525",
+	"title": "咀嚼14P-精准小词",
+	"children": [{
+		"campaignId": 145077010061493,
+		"profileId": 2490426330284584,
+		"name": "咀嚼14P-精准小词-10分-01",
+		"id": "637bfd269ea47a28ed804c43",
+		"state": "enabled",
+		"adGroupId": 158066896885591,
+		"defaultBid": 1.35,
+		"title": "咀嚼14P-精准小词-10分-01"
+	}, {
+		"campaignId": 145077010061493,
+		"profileId": 2490426330284584,
+		"name": "咀嚼14P-精准小词-10分-02",
+		"id": "637bfd269ea47a28ed804c44",
+		"state": "enabled",
+		"adGroupId": 217025097663864,
+		"defaultBid": 1.35,
+		"title": "咀嚼14P-精准小词-10分-02"
+	}, {
+		"campaignId": 145077010061493,
+		"profileId": 2490426330284584,
+		"name": "咀嚼14P-精准小词-8分",
+		"id": "637bfd269ea47a28ed804c4f",
+		"state": "enabled",
+		"adGroupId": 56245717119772,
+		"defaultBid": 0.85,
+		"title": "咀嚼14P-精准小词-8分"
+	}, {
+		"campaignId": 145077010061493,
+		"profileId": 2490426330284584,
+		"name": "咀嚼14P-精准小词-9分",
+		"id": "637bfd269ea47a28ed804c54",
+		"state": "enabled",
+		"adGroupId": 266327270971746,
+		"defaultBid": 1.2,
+		"title": "咀嚼14P-精准小词-9分"
+	}]
+}, {
+	"campaignType": "sponsoredProducts",
+	"bidding": {
+		"adjustments": [{
+			"predicate": "placementTop",
+			"percentage": 20
+		}],
+		"strategy": "manual"
+	},
+	"campaignId": 7672687267061,
+	"premiumBidAdjustment": true,
+	"dailyBudget": 32,
+	"profileId": 2490426330284584,
+	"name": "咀嚼14P-主推词-精准大词",
+	"targetingType": "manual",
+	"id": "637bfd259ea47a28ed804bd8",
+	"state": "enabled",
+	"startDate": "20221108",
+	"title": "咀嚼14P-主推词-精准大词",
+	"children": [{
+		"campaignId": 7672687267061,
+		"profileId": 2490426330284584,
+		"name": "咀嚼14P-主推词-精准大词01",
+		"id": "637bfd269ea47a28ed804c40",
+		"state": "enabled",
+		"adGroupId": 147840372152037,
+		"defaultBid": 1.2,
+		"title": "咀嚼14P-主推词-精准大词01"
+	}]
+}, {
+	"campaignType": "sponsoredProducts",
+	"bidding": {
+		"adjustments": [{
+			"predicate": "placementTop",
+			"percentage": 25
+		}],
+		"strategy": "manual"
+	},
+	"campaignId": 273479956618079,
+	"premiumBidAdjustment": true,
+	"dailyBudget": 20,
+	"profileId": 2490426330284584,
+	"name": "咀嚼14P-精准大词",
+	"targetingType": "manual",
+	"id": "637bfd259ea47a28ed804bd4",
+	"state": "enabled",
+	"startDate": "20220516",
+	"title": "咀嚼14P-精准大词",
+	"children": [{
+		"campaignId": 273479956618079,
+		"profileId": 2490426330284584,
+		"name": "咀嚼14P-精准大词-8分",
+		"id": "637bfd269ea47a28ed804c51",
+		"state": "enabled",
+		"adGroupId": 9567855707120,
+		"defaultBid": 0.85,
+		"title": "咀嚼14P-精准大词-8分"
+	}, {
+		"campaignId": 273479956618079,
+		"profileId": 2490426330284584,
+		"name": "咀嚼14P-精准大词-10分",
+		"id": "637bfd269ea47a28ed804c55",
+		"state": "enabled",
+		"adGroupId": 215360874980540,
+		"defaultBid": 1.2,
+		"title": "咀嚼14P-精准大词-10分"
+	}]
+}, {
+	"campaignType": "sponsoredProducts",
+	"bidding": {
+		"adjustments": [],
+		"strategy": "manual"
+	},
+	"campaignId": 30646036157587,
+	"premiumBidAdjustment": false,
+	"dailyBudget": 15,
+	"profileId": 2490426330284584,
+	"name": "咀嚼14P-竞品投放-新",
+	"targetingType": "manual",
+	"id": "637bfd259ea47a28ed804bdb",
+	"state": "enabled",
+	"startDate": "20220508",
+	"title": "咀嚼14P-竞品投放-新",
+	"children": [{
+		"campaignId": 30646036157587,
+		"profileId": 2490426330284584,
+		"name": "咀嚼14P-竞品投放-60d高转化",
+		"id": "637bfd269ea47a28ed804c41",
+		"state": "enabled",
+		"adGroupId": 174601028972277,
+		"defaultBid": 0.75,
+		"title": "咀嚼14P-竞品投放-60d高转化"
+	}]
+}, {
+	"campaignType": "sponsoredProducts",
+	"bidding": {
+		"adjustments": [{
+			"predicate": "placementTop",
+			"percentage": 5
+		}],
+		"strategy": "autoForSales"
+	},
+	"campaignId": 267561042576423,
+	"premiumBidAdjustment": true,
+	"dailyBudget": 10,
+	"profileId": 2490426330284584,
+	"name": "咀嚼14P-自动-高竞价",
+	"targetingType": "auto",
+	"id": "637bfd259ea47a28ed804bd1",
+	"state": "enabled",
+	"startDate": "20220820",
+	"title": "咀嚼14P-自动-高竞价",
+	"children": [{
+		"campaignId": 267561042576423,
+		"profileId": 2490426330284584,
+		"name": "咀嚼14P-自动-8月",
+		"id": "637bfd269ea47a28ed804c63",
+		"state": "enabled",
+		"adGroupId": 224495738615688,
+		"defaultBid": 0.99,
+		"title": "咀嚼14P-自动-8月"
+	}]
+}, {
+	"campaignType": "sponsoredProducts",
+	"bidding": {
+		"adjustments": [{
+			"predicate": "placementTop",
+			"percentage": 20
+		}],
+		"strategy": "manual"
+	},
+	"campaignId": 139018147548443,
+	"premiumBidAdjustment": true,
+	"dailyBudget": 25,
+	"profileId": 2490426330284584,
+	"name": "咀嚼14P-主推词-精准中词",
+	"targetingType": "manual",
+	"id": "637bfd259ea47a28ed804bd6",
+	"state": "enabled",
+	"startDate": "20221108",
+	"title": "咀嚼14P-主推词-精准中词",
+	"children": [{
+		"campaignId": 139018147548443,
+		"profileId": 2490426330284584,
+		"name": "咀嚼14P-主推词-精准中词01",
+		"id": "637bfd269ea47a28ed804c3e",
+		"state": "enabled",
+		"adGroupId": 62730163527961,
+		"defaultBid": 1.25,
+		"title": "咀嚼14P-主推词-精准中词01"
+	}]
+}, {
+	"campaignType": "sponsoredProducts",
+	"bidding": {
+		"adjustments": [],
+		"strategy": "autoForSales"
+	},
+	"campaignId": 161025210292732,
+	"premiumBidAdjustment": false,
+	"dailyBudget": 15,
+	"profileId": 2490426330284584,
+	"name": "咀嚼14P-匹配投放",
+	"targetingType": "manual",
+	"id": "637bfd259ea47a28ed804bd3",
+	"state": "enabled",
+	"startDate": "20220516",
+	"title": "咀嚼14P-匹配投放",
+	"children": [{
+		"campaignId": 161025210292732,
+		"profileId": 2490426330284584,
+		"name": "咀嚼14P-短语广泛-10分-短语",
+		"id": "637bfd269ea47a28ed804c42",
+		"state": "enabled",
+		"adGroupId": 50596839834997,
+		"defaultBid": 0.75,
+		"title": "咀嚼14P-短语广泛-10分-短语"
+	}, {
+		"campaignId": 161025210292732,
+		"profileId": 2490426330284584,
+		"name": "咀嚼14P-匹配-10分-广泛",
+		"id": "637bfd269ea47a28ed804c53",
+		"state": "enabled",
+		"adGroupId": 280747990323931,
+		"defaultBid": 0.65,
+		"title": "咀嚼14P-匹配-10分-广泛"
+	}]
+}, {
+	"campaignType": "sponsoredProducts",
+	"bidding": {
+		"adjustments": [{
+			"predicate": "placementTop",
+			"percentage": 20
+		}],
+		"strategy": "manual"
+	},
+	"campaignId": 72903592333643,
+	"premiumBidAdjustment": true,
+	"dailyBudget": 30,
+	"profileId": 2490426330284584,
+	"name": "咀嚼14P-主推词-精准小词",
+	"targetingType": "manual",
+	"id": "637bfd259ea47a28ed804bda",
+	"state": "enabled",
+	"startDate": "20221108",
+	"title": "咀嚼14P-主推词-精准小词",
+	"children": [{
+		"campaignId": 72903592333643,
+		"profileId": 2490426330284584,
+		"name": "咀嚼14P-主推词-精准小词01",
+		"id": "637bfd269ea47a28ed804c3f",
+		"state": "enabled",
+		"adGroupId": 140292171732592,
+		"defaultBid": 1.2,
+		"title": "咀嚼14P-主推词-精准小词01"
+	}]
+}, {
+	"campaignType": "sponsoredProducts",
+	"bidding": {
+		"adjustments": [],
+		"strategy": "manual"
+	},
+	"campaignId": 58626028074620,
+	"premiumBidAdjustment": false,
+	"dailyBudget": 10,
+	"profileId": 2490426330284584,
+	"name": "咀嚼14P-精准中词",
+	"targetingType": "manual",
+	"id": "637bfd259ea47a28ed804bd5",
+	"state": "enabled",
+	"startDate": "20220615",
+	"title": "咀嚼14P-精准中词",
+	"children": [{
+		"campaignId": 58626028074620,
+		"profileId": 2490426330284584,
+		"name": "咀嚼14P-精准中词-10分",
+		"id": "637bfd269ea47a28ed804c45",
+		"state": "enabled",
+		"adGroupId": 229130021935053,
+		"defaultBid": 1.14,
+		"title": "咀嚼14P-精准中词-10分"
+	}, {
+		"campaignId": 58626028074620,
+		"profileId": 2490426330284584,
+		"name": "咀嚼14P-精准中词-9分",
+		"id": "637bfd269ea47a28ed804c50",
+		"state": "enabled",
+		"adGroupId": 22139409111373,
+		"defaultBid": 0.95,
+		"title": "咀嚼14P-精准中词-9分"
+	}]
+}]

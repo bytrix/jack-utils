@@ -1,5 +1,7 @@
-import exploreTreeData from './exploreTreeData.js'
+import exploreTreeDataWithStack from './exploreTreeDataWithStack.js'
+import exploreTreeDataWithRecursion from './exploreTreeDataWithRecursion'
 
 export {
-    exploreTreeData
+    exploreTreeDataWithStack,
+    exploreTreeDataWithRecursion
 }
