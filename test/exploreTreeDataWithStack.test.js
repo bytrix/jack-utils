@@ -1,8 +1,8 @@
-import exploreTreeData from "../src/exploreTreeDataWithStack.js";
 import { test } from 'tap'
+import Tree from '../src/index.js'
 import realData from './realTreeData.js'
 
-const tree = [
+const simpleTree = [
     {
         name: 'A',
         children: [
@@ -248,29 +248,37 @@ const fourLevelTree = [
 ]
 
 test('Result of exploring the binary tree should be A,B,D,E,C,F,G', t => {
-    const { result, tree: newTree } = exploreTreeData(tree)
     t.same()
-    t.equal(result[0], 'A')
-    t.equal(result[1], 'B')
-    t.equal(result[2], 'D')
-    t.equal(result[3], 'E')
-    t.equal(result[4], 'C')
-    t.equal(result[5], 'F')
-    t.equal(result[6], 'G')
-    t.equal(result[7], undefined)
+    const tree = new Tree({
+        data: simpleTree,
+        alg: 'stack',
+        key: 'name'
+    })
+    const keys = tree.getKeys()
+    t.equal(keys[0], 'A')
+    t.equal(keys[1], 'B')
+    t.equal(keys[2], 'D')
+    t.equal(keys[3], 'E')
+    t.equal(keys[4], 'C')
+    t.equal(keys[5], 'F')
+    t.equal(keys[6], 'G')
+    t.equal(keys[7], undefined)
     t.end()
 })
 
 test('Callback is invoked when passing second paramter', t => {
     t.same()
     const json = '[{"name":"A","children":[{"name":"C","children":[{"name":"F","children":[]},{"name":"G","children":[]}]}]}]'
-    const { tree: newTree } = exploreTreeData(tree, {
-        callback: (children, index) => {
-            if(children[index]?.name === 'B') {
-                return false
-            }
-            return true
+    const tree = new Tree({
+        alg: 'stack',
+        data: simpleTree,
+        key: 'name'
+    })
+    const newTree = tree.explore((children, index) => {
+        if(children[index]?.name === 'B') {
+            return false
         }
+        return true
     })
     t.equal(JSON.stringify(newTree), json)
     t.end()
@@ -278,31 +286,39 @@ test('Callback is invoked when passing second paramter', t => {
 
 test('Result of exploring tree with multiple roots should be A,C,D,B,E,G,H,F,I', t => {
     t.same()
-    const { result } = exploreTreeData(treeWithMultipleRoots)
-    t.equal(result[0], 'A')
-    t.equal(result[1], 'C')
-    t.equal(result[2], 'D')
-    t.equal(result[3], 'B')
-    t.equal(result[4], 'E')
-    t.equal(result[5], 'G')
-    t.equal(result[6], 'H')
-    t.equal(result[7], 'F')
-    t.equal(result[8], 'I')
-    t.equal(result[9], undefined)
+    const tree = new Tree({
+        alg: 'stack',
+        data: treeWithMultipleRoots,
+        key: 'name'
+    })
+    const keys = tree.getKeys()
+    t.equal(keys[0], 'A')
+    t.equal(keys[1], 'C')
+    t.equal(keys[2], 'D')
+    t.equal(keys[3], 'B')
+    t.equal(keys[4], 'E')
+    t.equal(keys[5], 'G')
+    t.equal(keys[6], 'H')
+    t.equal(keys[7], 'F')
+    t.equal(keys[8], 'I')
+    t.equal(keys[9], undefined)
     t.end()
 })
 
 test('Callback handle with multiple roots tree', t => {
     t.same()
     const json = '[{"name":"A","children":[{"name":"C","children":[]},{"name":"D","children":[]}]},{"name":"B","children":[{"name":"F","children":[{"name":"I","children":[]}]}]}]'
-    const { tree: newTree } = exploreTreeData(JSON.parse(JSON.stringify(treeWithMultipleRoots)), {
-        callback: (children, index) => {
-            const child = children[index]
-            if(child.name === 'E') {
-                return false
-            }
-            return true
+    const tree = new Tree({
+        alg: 'stack',
+        data: JSON.parse(JSON.stringify(treeWithMultipleRoots)),
+        key: 'name'
+    })
+    const newTree = tree.explore((children, index) => {
+        const child = children[index]
+        if(child.name === 'E') {
+            return false
         }
+        return tree
     })
     t.equal(JSON.stringify(newTree), json)
     t.end()
@@ -312,14 +328,17 @@ test('Test remained nodes', t => {
     t.same()
     const remained = ['B', 'E']
     const json = '[{"name":"B","children":[{"name":"E","children":[]}]}]'
-    const { result, tree: newTree } = exploreTreeData(JSON.parse(JSON.stringify(treeWithMultipleRoots)), {
-        callback: (children, index) => {
-            const child = children[index]
-            if(remained.indexOf(child.name) === -1) {
-                return false
-            }
-            return true
+    const tree = new Tree({
+        alg: 'stack',
+        data: JSON.parse(JSON.stringify(treeWithMultipleRoots)),
+        key: 'name'
+    })
+    const newTree = tree.explore((children, index) => {
+        const child = children[index]
+        if(remained.indexOf(child.name) === -1) {
+            return false
         }
+        return true
     })
     t.equal(json, JSON.stringify(newTree))
     t.end()
@@ -350,15 +369,16 @@ test('Real test example 1', t => {
     }]
     const selectedKeys = ['1', '1-0']
     const json = '[{"title":"咀嚼14P-精准小词","key":"1","children":[{"title":"咀嚼14P-精准小词- pack","key":"1-0","children":[]}]}]'
-    const { result, tree: newTree } = exploreTreeData(treeWithKey, {
-        key: 'key',
-        callback: (children, index) => {
-            const child = children[index]
-            if(selectedKeys.indexOf(child.key) === -1) {
-                return false
-            }
-            return true
+    const tree = new Tree({
+        alg: 'stack',
+        data: treeWithKey,
+    })
+    const newTree = tree.explore((children, index) => {
+        const child = children[index]
+        if(selectedKeys.indexOf(child.key) === -1) {
+            return false
         }
+        return true
     })
     t.equal(JSON.stringify(newTree), json)
     t.end()
@@ -366,42 +386,57 @@ test('Real test example 1', t => {
 
 test('Real test example 2', t => {
     t.same()
-    const { result, tree } = exploreTreeData(realData, {
+    const tree = new Tree({
         key: 'id',
-        callback: (children, index) => {
-            // const child = children[index]
-            // console.log(child.id, child.title)
-            return true
-        }
+        data: realData
+    })
+    tree.explore((children, index) => {
+        return true
     })
     t.end()
 })
 
 test('Empty tree', t => {
     t.same()
-    const { result, tree } = exploreTreeData([])
-    t.equal(result.length, 0)
-    t.equal(tree.length, 0)
+    const tree = new Tree({
+        // TODO: 若未制定alg，这里可能会导致keys出错
+        alg: 'stack',
+        data: []
+    })
+    const newTree = tree.explore()
+    const keys = tree.getKeys()
+    t.equal(newTree.length, 0)
+    t.equal(keys.length, 0)
     t.end()
 })
 
 test('If there is no key property which value is like 0-0-1, add it to the tree', t => {
     t.same()
-    const { result, tree } = exploreTreeData(realData)
-    // console.log('tree', JSON.stringify(tree))
+    const tree = new Tree({
+        alg: 'stack',
+        data: realData,
+        key: 'key'
+    })
+    const newTree =  tree.explore()
     t.end()
 })
 
 test('Test three level tree', t => {
     t.same()
-    const { result } = exploreTreeData(threeLevelTree)
-    // console.log(result.join(','))
+    const tree = new Tree({
+        alg: 'stack',
+        data: threeLevelTree,
+        key: 'name'
+    })
     t.end()
 })
 
 test('Test four level tree', t => {
     t.same()
-    const { result } = exploreTreeData(fourLevelTree)
-    // console.log(result.join(' '))
+    const tree = new Tree({
+        alg: 'stack',
+        data: fourLevelTree,
+        key: 'name'
+    })
     t.end()
 })
