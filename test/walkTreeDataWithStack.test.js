@@ -274,7 +274,7 @@ test('Callback is invoked when passing second paramter', t => {
         data: simpleTree,
         key: 'name'
     })
-    const newTree = tree.explore((children, index) => {
+    const newTree = tree.walk((children, index) => {
         if(children[index]?.name === 'B') {
             return false
         }
@@ -313,7 +313,7 @@ test('Callback handle with multiple roots tree', t => {
         data: JSON.parse(JSON.stringify(treeWithMultipleRoots)),
         key: 'name'
     })
-    const newTree = tree.explore((children, index) => {
+    const newTree = tree.walk((children, index) => {
         const child = children[index]
         if(child.name === 'E') {
             return false
@@ -333,7 +333,7 @@ test('Test remained nodes', t => {
         data: JSON.parse(JSON.stringify(treeWithMultipleRoots)),
         key: 'name'
     })
-    const newTree = tree.explore((children, index) => {
+    const newTree = tree.walk((children, index) => {
         const child = children[index]
         if(remained.indexOf(child.name) === -1) {
             return false
@@ -373,7 +373,7 @@ test('Real test example 1', t => {
         alg: 'stack',
         data: treeWithKey,
     })
-    const newTree = tree.explore((children, index) => {
+    const newTree = tree.walk((children, index) => {
         const child = children[index]
         if(selectedKeys.indexOf(child.key) === -1) {
             return false
@@ -390,7 +390,7 @@ test('Real test example 2', t => {
         key: 'id',
         data: realData
     })
-    tree.explore((children, index) => {
+    tree.walk((children, index) => {
         return true
     })
     t.end()
@@ -403,7 +403,7 @@ test('Empty tree', t => {
         alg: 'stack',
         data: []
     })
-    const newTree = tree.explore()
+    const newTree = tree.walk()
     const keys = tree.getKeys()
     t.equal(newTree.length, 0)
     t.equal(keys.length, 0)
@@ -417,7 +417,7 @@ test('If there is no key property which value is like 0-0-1, add it to the tree'
         data: realData,
         key: 'key'
     })
-    const newTree =  tree.explore()
+    const newTree =  tree.walk()
     t.end()
 })
 
@@ -438,5 +438,11 @@ test('Test four level tree', t => {
         data: fourLevelTree,
         key: 'name'
     })
+    t.end()
+})
+
+test('Merge two trees', t => {
+    t.same()
+    const tree = 
     t.end()
 })

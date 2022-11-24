@@ -10,7 +10,7 @@ const initConfig = (config) => {
     config.callback = config.callback || (() => true)
     config.key = config.key || 'name'
 }
-const exploreTreeData = (tree, config = {}) => {
+const walkTreeData = (tree, config = {}) => {
     initConfig(config)
     let index = 0
     let root
@@ -41,6 +41,7 @@ const exploreTreeData = (tree, config = {}) => {
         currentRootNode.children = currentRootNode.children || []
         // 遍历当前根节点的子节点
         while(index < currentRootNode.children.length) {
+            // callback will walk here
             const childNode = currentRootNode.children[index]
             childNode.children = childNode.children || []
             const isNeedToPush = config.callback(currentRootNode.children, index)
@@ -71,4 +72,4 @@ const exploreTreeData = (tree, config = {}) => {
 }
 
 
-export default exploreTreeData
+export default walkTreeData
