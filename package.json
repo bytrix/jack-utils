@@ -1,6 +1,6 @@
 {
   "name": "jack-utils",
-  "version": "1.0.28",
+  "version": "1.0.32",
   "description": "",
   "main": "lib/index.js",
   "scripts": {

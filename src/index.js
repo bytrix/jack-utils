@@ -49,16 +49,31 @@ class Tree {
         }
         return this.keys
     }
-    // merge(tree1, tree2) {
-    //     const tree = new Tree({
-    //         alg: 'recursion',
-    //         data: tree1,
-    //     })
-    //     tree.walk((children, index) => {
-    //         const child = children[index]
-
-    //     })
-    // }
+    getLeafs({ inherit = false, inheritKeys = [] } = {}) {
+        const leafs = []
+        let parentKeys = {}
+        this.walk((children, index, currentRoot) => {
+            const child = children[index]
+            if(inherit) {
+                parentKeys = inheritKeys.reduce((total, num) => {
+                    total[num] = total[num] || currentRoot?.[num]
+                    return total
+                }, parentKeys)
+            }
+            if(child.children.length === 0) {
+                if(inherit) {
+                    leafs.push({
+                        ...child,
+                        ...parentKeys,
+                    })
+                } else {
+                    leafs.push(child)
+                }
+            }
+            return true
+        })
+        return leafs
+    }
     merge(otherTree) {
         return mergeTree(this.data, otherTree)
     }

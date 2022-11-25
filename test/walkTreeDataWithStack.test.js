@@ -32,6 +32,39 @@ const simpleTree = [
     }
 ]
 
+
+const inheritFromAncestorTree = [
+    {
+        name: 'A',
+        keyFromA: 'value of A',
+        children: [
+            {
+                name: 'B',
+                keyFromB: 'value of B',
+                children: [
+                    {
+                        name: 'D',
+                    },
+                    {
+                        name: 'E'
+                    }
+                ]
+            },
+            {
+                name: 'C',
+                children: [
+                    {
+                        name: 'F'
+                    },
+                    {
+                        name: 'G'
+                    }
+                ]
+            }
+        ]
+    }
+]
+
 const treeWithMultipleRoots = [
     {
         name: 'A',
@@ -441,8 +474,26 @@ test('Test four level tree', t => {
     t.end()
 })
 
-test('Merge two trees', t => {
+test('Get leafs with ancestor\'s properties', t => {
     t.same()
-    const tree = 
+    const tree = new Tree({
+        alg: 'stack',
+        data: inheritFromAncestorTree,
+        inherit: true,
+        inheritKeys: ['keyFromA', 'keyFromB'],
+        key: 'name'
+    })
+    const leafs = tree.getLeafs({
+        inherit: true,
+        inheritKeys: ['keyFromA', 'keyFromB']
+    })
+    const expected = '[{"name":"D","children":[],"keyFromA":"value of A","keyFromB":"value of B"},{"name":"E","children":[],"keyFromA":"value of A","keyFromB":"value of B"},{"name":"F","children":[],"keyFromA":"value of A","keyFromB":"value of B"},{"name":"G","children":[],"keyFromA":"value of A","keyFromB":"value of B"}]'
+    t.equal(JSON.stringify(leafs), expected)
     t.end()
 })
+
+// test('Merge two trees', t => {
+//     t.same()
+//     const tree = 
+//     t.end()
+// })

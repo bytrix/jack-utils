@@ -33,6 +33,7 @@ const walkTreeData = (tree, config = {}) => {
         }
     }
     // 根节点入栈
+    config.callback(tree, index)
     stack.push([root, index])
     // 如果栈不为空
     while(stack.length > 0) {
@@ -44,7 +45,7 @@ const walkTreeData = (tree, config = {}) => {
             // callback will walk here
             const childNode = currentRootNode.children[index]
             childNode.children = childNode.children || []
-            const isNeedToPush = config.callback(currentRootNode.children, index)
+            const isNeedToPush = config.callback(currentRootNode.children, index, currentRootNode)
             if(!isNeedToPush) {
                 currentRootNode.children.splice(index, 1)
                 continue
