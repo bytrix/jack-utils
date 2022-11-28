@@ -8,13 +8,21 @@ const AlgMapping = {
 }
 
 class Tree {
-    constructor({ alg = 'recursion', data, key = 'key', autoKey = false, spreadParentKey = false, parentKeysSeperator }) {
+    constructor({
+        alg = 'recursion',
+        data, key = 'key',
+        autoKey = false,
+        spreadParentKey = false,
+        parentKeysSeperator,
+        children = 'children'
+    }) {
         this.alg = alg
         this.data = data
         this.key = key
         this.autoKey = autoKey
         this.spreadParentKey = spreadParentKey
         this.parentKeysSeperator = parentKeysSeperator
+        this.children = children
     }
     _executeAlg(callback = () => true, otherTree) {
         const algFn = AlgMapping[this.alg]
@@ -23,6 +31,7 @@ class Tree {
             autoKey: this.autoKey,
             spreadParentKey: this.spreadParentKey,
             parentKeysSeperator: this.parentKeysSeperator,
+            children: this.children,
             callback,
             otherTree,
         })
@@ -60,7 +69,7 @@ class Tree {
                     return total
                 }, parentKeys)
             }
-            if(child.children.length === 0) {
+            if(child?.[this.children].length === 0) {
                 if(inherit) {
                     leafs.push({
                         ...child,
@@ -75,16 +84,11 @@ class Tree {
         return leafs
     }
     merge(otherTree) {
-        return mergeTree(this.data, otherTree)
+        return mergeTree(this.data, otherTree, {
+            key: this.key,
+            children: this.children
+        })
     }
-    // search(keyword, { depth = 0 }) {
-    //     const res = []
-    //     this.walk(treeNode => {
-    //         console.log('treeNode', treeNode)
-    //         return true
-    //     })
-    //     return res
-    // }
 }
 
 export default Tree

@@ -280,6 +280,22 @@ const fourLevelTree = [
     }
 ]
 
+const treeWithoutChildren = [{
+	"adGroups": [{
+		"adGroupName": "咀嚼14P-精准大词-10分",
+		"campaignId": 273479956618079,
+		"campaignName": "咀嚼14P-精准大词",
+		"adGroupId": 215360874980540
+	}, {
+		"adGroupName": "咀嚼14P-主推词-精准大词01",
+		"campaignId": 7672687267061,
+		"campaignName": "咀嚼14P-主推词-精准大词",
+		"adGroupId": 147840372152037
+	}],
+	"query": "puppy chew toys for teething",
+	"key": "c009f535494e4ec1553c0fddef5ed3f3"
+}]
+
 test('Result of exploring the binary tree should be A,B,D,E,C,F,G', t => {
     t.same()
     const tree = new Tree({
@@ -492,8 +508,37 @@ test('Get leafs with ancestor\'s properties', t => {
     t.end()
 })
 
-// test('Merge two trees', t => {
-//     t.same()
-//     const tree = 
-//     t.end()
-// })
+test('Test tree without children', t => {
+    t.same()
+    const tree = new Tree({
+        alg: 'stack',
+        data: treeWithoutChildren,
+        children: 'adGroups'
+    })
+    const expected = '[{"adGroups":[{"adGroupName":"咀嚼14P-精准大词-10分","campaignId":273479956618079,"campaignName":"咀嚼14P-精准大词","adGroupId":215360874980540,"adGroups":[]},{"adGroupName":"咀嚼14P-主推词-精准大词01","campaignId":7672687267061,"campaignName":"咀嚼14P-主推词-精准大词","adGroupId":147840372152037,"adGroups":[]}],"query":"puppy chew toys for teething","key":"c009f535494e4ec1553c0fddef5ed3f3"}]'
+    const expectedKeys = '["c009f535494e4ec1553c0fddef5ed3f3",null,null]'
+    const expectedLeafs = '[{"adGroupName":"咀嚼14P-精准大词-10分","campaignId":273479956618079,"campaignName":"咀嚼14P-精准大词","adGroupId":215360874980540,"adGroups":[]},{"adGroupName":"咀嚼14P-主推词-精准大词01","campaignId":7672687267061,"campaignName":"咀嚼14P-主推词-精准大词","adGroupId":147840372152037,"adGroups":[]}]'
+    const newTree = tree.walk()
+    const leafs = tree.getLeafs()
+    const keys = tree.getKeys()
+    t.equal(JSON.stringify(leafs), expectedLeafs)
+    t.equal(JSON.stringify(keys), expectedKeys)
+    t.equal(JSON.stringify(newTree), expected)
+    t.end()
+})
+
+test('Test no children tree with inherit', t => {
+    t.same()
+    const tree = new Tree({
+        alg: 'stack',
+        data: treeWithoutChildren,
+        children: 'adGroups',
+    })
+    const expectedLeafs = '[{"adGroupName":"咀嚼14P-精准大词-10分","campaignId":273479956618079,"campaignName":"咀嚼14P-精准大词","adGroupId":215360874980540,"adGroups":[],"key":"c009f535494e4ec1553c0fddef5ed3f3","query":"puppy chew toys for teething"},{"adGroupName":"咀嚼14P-主推词-精准大词01","campaignId":7672687267061,"campaignName":"咀嚼14P-主推词-精准大词","adGroupId":147840372152037,"adGroups":[],"key":"c009f535494e4ec1553c0fddef5ed3f3","query":"puppy chew toys for teething"}]'
+    const leafs = tree.getLeafs({
+        inherit: true,
+        inheritKeys: ['key', 'query']
+    })
+    t.equal(JSON.stringify(leafs), expectedLeafs)
+    t.end()
+})

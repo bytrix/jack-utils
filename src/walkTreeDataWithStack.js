@@ -1,14 +1,15 @@
 // 算法讲解请参考公众号文章：前端艺术家的小本本 - 使用栈结构模拟二叉树遍历（非递归）
-
+const config = {}
 /**
  * 
  * @param {*} tree 树形结构的数据
  * @param {*} callback 遍历节点的回调函数，返回值为布尔值，表示是否需要这个节点（默认为true）
  * @returns 
  */
-const initConfig = (config) => {
-    config.callback = config.callback || (() => true)
-    config.key = config.key || 'name'
+const initConfig = (_config) => {
+    config.callback = _config.callback
+    config.key = _config.key
+    config.children = _config.children
 }
 const walkTreeData = (tree, config = {}) => {
     initConfig(config)
@@ -24,7 +25,7 @@ const walkTreeData = (tree, config = {}) => {
         // 多根节点（设置一个虚拟根节点，且不打印根节点）
         root = {
             [config.key]: '<root>',
-            children: tree
+            [config.children]: tree
         }
     } else {
         return {
@@ -39,15 +40,15 @@ const walkTreeData = (tree, config = {}) => {
     while(stack.length > 0) {
         // 弹出栈顶元素，并将其设置为当前根节点
         let [currentRootNode, index] = stack.pop()
-        currentRootNode.children = currentRootNode.children || []
+        currentRootNode[config.children] = currentRootNode[config.children] || []
         // 遍历当前根节点的子节点
-        while(index < currentRootNode.children.length) {
+        while(index < currentRootNode[config.children].length) {
             // callback will walk here
-            const childNode = currentRootNode.children[index]
-            childNode.children = childNode.children || []
-            const isNeedToPush = config.callback(currentRootNode.children, index, currentRootNode)
+            const childNode = currentRootNode[config.children][index]
+            childNode[config.children] = childNode[config.children] || []
+            const isNeedToPush = config.callback(currentRootNode[config.children], index, currentRootNode)
             if(!isNeedToPush) {
-                currentRootNode.children.splice(index, 1)
+                currentRootNode[config.children].splice(index, 1)
                 continue
             }
             // 打印子节点
@@ -57,7 +58,7 @@ const walkTreeData = (tree, config = {}) => {
             // index自增
             index += 1
             // 如果当前节点还有子节点
-            if(childNode.children.length > 0) {
+            if(childNode[config.children].length > 0) {
                 // 则将当前根节点入栈
                 stack.push([currentRootNode, index])
                 // 并设置当前根节点为当前正在遍历的节点

@@ -325,24 +325,20 @@ test('Walk two trees together', t => {
     t.end()
 })
 
-// // test('Search a keyword in a specific depth', t => {
-// //     t.same()
-// //     const expected = `[{"name":"1","children":[{"name":"2","children":[{"name":"4","children":[{"name":"8","children":[{"name":"16","key":"0-0-0-0-0"},{"name":"17","key":"0-0-0-0-1"}],"key":"0-0-0-0"},{"name":"9","children":[{"name":"18","key":"0-0-0-1-0"},{"name":"19","key":"0-0-0-1-1"}],"key":"0-0-0-1"}],"key":"0-0-0"},{"name":"5","children":[{"name":"10","children":[{"name":"20","key":"0-0-1-0-0"},{"name":"21","key":"0-0-1-0-1"}],"key":"0-0-1-0"},{"name":"11","children":[{"name":"22","key":"0-0-1-1-0"},{"name":"23","key":"0-0-1-1-1"}],"key":"0-0-1-1"}],"key":"0-0-1"}],"key":"0-0"},{"name":"3","children":[{"name":"6","children":[{"name":"12","children":[{"name":"24","key":"0-1-0-0-0"},{"name":"25","key":"0-1-0-0-1"}],"key":"0-1-0-0"},{"name":"13","children":[{"name":"26","key":"0-1-0-1-0"},{"name":"27","key":"0-1-0-1-1"}],"key":"0-1-0-1"}],"key":"0-1-0"},{"name":"7","children":[{"name":"14","children":[{"name":"28","key":"0-1-1-0-0"},{"name":"29","key":"0-1-1-0-1"}],"key":"0-1-1-0"},{"name":"15","children":[{"name":"30","key":"0-1-1-1-0"},{"name":"31","key":"0-1-1-1-1"}],"key":"0-1-1-1"}],"key":"0-1-1"}],"key":"0-1"}],"key":"0"}]`
-// //     const tree = new Tree({
-// //         alg: 'recursion',
-// //         data: fourLevelTree,
-// //         key: 'key'
-// //     })
-// //     // console.log('tree', tree.walk)
-// //     const newTree = tree.walk(treeNode => {
-// //         console.log('treeNode', treeNode)
-// //         return true
-// //     })
-// //     console.log('newTree', JSON.stringify(newTree))
-// //     // 先调用walk()，再调用getKeys()
-// //     // tree.getKeys()
-// //     // const { tree: newTree } = walkTreeDataWithRecursion(fourLevelTree, {
-// //     //     key: 'key'
-// //     // })
-// //     t.end()
-// // })
+test('Test walk depth', t => {
+    t.same()
+    const tree = new Tree({
+        alg: 'recursion',
+        data: simpleTree,
+        key: 'name'
+    })
+    let depthChain = ''
+    const expected = 'A0B1D2E2C1F2G2'
+    tree.walk(([children, index], [$0, $1, depth]) => {
+        const child = children[index]
+        depthChain += `${child.name}${depth}`
+        return true
+    })
+    t.equal(depthChain, expected)
+    t.end()
+})
