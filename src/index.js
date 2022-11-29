@@ -1,6 +1,7 @@
 import walkTreeDataWithStack from './walkTreeDataWithStack.js'
 import walkTreeDataWithRecursion from './walkTreeDataWithRecursion.js'
 import mergeTree from './utils/mergeTree.js'
+import uniqConcat from './uniqConcat.js'
 
 const AlgMapping = {
     recursion: walkTreeDataWithRecursion,
@@ -26,6 +27,7 @@ class Tree {
     }
     _executeAlg(callback = () => true, otherTree) {
         const algFn = AlgMapping[this.alg]
+        // console.log('_executeAlg walk', this.alg)
         const { result, tree } = algFn(this.data, {
             key: this.key,
             autoKey: this.autoKey,
@@ -61,7 +63,7 @@ class Tree {
     getLeafs({ inherit = false, inheritKeys = [] } = {}) {
         const leafs = []
         let parentKeys = {}
-        this.walk((children, index, currentRoot) => {
+        this.walk(([children, index], currentRoot) => {
             const child = children[index]
             if(inherit) {
                 parentKeys = inheritKeys.reduce((total, num) => {
@@ -69,7 +71,9 @@ class Tree {
                     return total
                 }, parentKeys)
             }
-            if(child?.[this.children].length === 0) {
+            if(!child) return
+            const childrenOfChild = child?.[this.children]
+            if(!childrenOfChild || (childrenOfChild && childrenOfChild.length === 0)) {
                 if(inherit) {
                     leafs.push({
                         ...child,
@@ -92,3 +96,7 @@ class Tree {
 }
 
 export default Tree
+
+export {
+    uniqConcat
+}

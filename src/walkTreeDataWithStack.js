@@ -11,7 +11,10 @@ const initConfig = (_config) => {
     config.key = _config.key
     config.children = _config.children
 }
-const walkTreeData = (tree, config = {}) => {
+const walkTreeData = (tree = [], config = {}) => {
+    if(!(tree instanceof Array)) {
+        throw new Error('tree is not a correct array format!')
+    }
     initConfig(config)
     let index = 0
     let root
@@ -19,7 +22,7 @@ const walkTreeData = (tree, config = {}) => {
     let result = []
     if(tree.length === 1) {
         // 单根节点（取唯一一个根节点，并打印根节点）
-        root= tree[0]
+        root = tree[0]
         result.push(root[config.key])
     } else if(tree.length > 1) {
         // 多根节点（设置一个虚拟根节点，且不打印根节点）
@@ -34,19 +37,25 @@ const walkTreeData = (tree, config = {}) => {
         }
     }
     // 根节点入栈
-    config.callback(tree, index)
+    console.log('is tree an array', tree instanceof Array)
+    config.callback([tree, index])
     stack.push([root, index])
     // 如果栈不为空
     while(stack.length > 0) {
         // 弹出栈顶元素，并将其设置为当前根节点
         let [currentRootNode, index] = stack.pop()
-        currentRootNode[config.children] = currentRootNode[config.children] || []
+        // console.log('currentRootNode', currentRootNode)
+        currentRootNode[config.children] = currentRootNode?.[config.children] || []
         // 遍历当前根节点的子节点
         while(index < currentRootNode[config.children].length) {
             // callback will walk here
             const childNode = currentRootNode[config.children][index]
-            childNode[config.children] = childNode[config.children] || []
-            const isNeedToPush = config.callback(currentRootNode[config.children], index, currentRootNode)
+            if(!childNode) {
+                break
+            }
+            childNode[config.children] = childNode?.[config.children] || []
+            console.log('is it an array?', currentRootNode[config.children] instanceof Array)
+            const isNeedToPush = config.callback([currentRootNode[config.children], index], currentRootNode)
             if(!isNeedToPush) {
                 currentRootNode[config.children].splice(index, 1)
                 continue

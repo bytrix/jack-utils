@@ -1,7 +1,8 @@
 {
   "name": "jack-utils",
-  "version": "1.0.37",
+  "version": "1.0.51",
   "description": "",
+  "main": "./lib/index.js",
   "type": "module",
   "scripts": {
     "test": "tap ./test/*.js",
