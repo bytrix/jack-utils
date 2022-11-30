@@ -62,12 +62,17 @@ class Tree {
     }
     getLeafs({ inherit = false, inheritKeys = [] } = {}) {
         const leafs = []
-        let parentKeys = {}
         this.walk(([children, index], currentRoot) => {
             const child = children[index]
+            let parentKeys = {}
             if(inherit) {
-                parentKeys = inheritKeys.reduce((total, num) => {
-                    total[num] = total[num] || currentRoot?.[num]
+                parentKeys = inheritKeys.reduce((total, inheritKey) => {
+                    if(typeof(inheritKey) === 'string') {
+                        total[inheritKey] = total[inheritKey] || currentRoot?.[inheritKey]
+                    } else if(typeof(inheritKey) === 'object') {
+                        const { sourceKey, targetKey } = inheritKey
+                        total[targetKey] = total[targetKey] || currentRoot?.[sourceKey]
+                    }
                     return total
                 }, parentKeys)
             }

@@ -744,6 +744,6 @@ test('Test real data', t => {
         }
         return true
     })
-    console.log('tree', JSON.stringify(tree))
+    // console.log('tree', JSON.stringify(tree))
     t.end()
 })

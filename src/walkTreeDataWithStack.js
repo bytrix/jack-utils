@@ -37,14 +37,12 @@ const walkTreeData = (tree = [], config = {}) => {
         }
     }
     // 根节点入栈
-    console.log('is tree an array', tree instanceof Array)
     config.callback([tree, index])
     stack.push([root, index])
     // 如果栈不为空
     while(stack.length > 0) {
         // 弹出栈顶元素，并将其设置为当前根节点
         let [currentRootNode, index] = stack.pop()
-        // console.log('currentRootNode', currentRootNode)
         currentRootNode[config.children] = currentRootNode?.[config.children] || []
         // 遍历当前根节点的子节点
         while(index < currentRootNode[config.children].length) {
@@ -54,7 +52,6 @@ const walkTreeData = (tree = [], config = {}) => {
                 break
             }
             childNode[config.children] = childNode?.[config.children] || []
-            console.log('is it an array?', currentRootNode[config.children] instanceof Array)
             const isNeedToPush = config.callback([currentRootNode[config.children], index], currentRootNode)
             if(!isNeedToPush) {
                 currentRootNode[config.children].splice(index, 1)
