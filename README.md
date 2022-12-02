@@ -43,14 +43,6 @@ const keys = tree.getKeys() // -> [A,B,D,E,C,F,G]
 
 ## 遍历节点的回调函数
 ```javascript
-const { tree: newTree } = exploreTreeData(tree, {
-    callback: (children, index) => {
-        if(children[index]?.name === 'B') {
-            return false
-        }
-        return true
-    }
-})
 const tree = new Tree({
     data: tree,
     key: 'name'
@@ -76,3 +68,7 @@ const tree = new Tree({
 // 	}]
 // }]
 ```
+
+## API
+- arrayIntegrate
+- uniqConcat

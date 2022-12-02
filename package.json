@@ -1,9 +1,8 @@
 {
   "name": "jack-utils",
-  "version": "1.0.53",
+  "version": "1.0.55",
   "description": "",
   "main": "./lib/index.js",
-  "type": "module",
   "scripts": {
     "test": "tap ./test/*.js",
     "build": "babel ./src --out-dir ./lib"

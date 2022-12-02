@@ -2,6 +2,7 @@ import walkTreeDataWithStack from './walkTreeDataWithStack.js'
 import walkTreeDataWithRecursion from './walkTreeDataWithRecursion.js'
 import mergeTree from './utils/mergeTree.js'
 import uniqConcat from './uniqConcat.js'
+import arrayIntegrate from './arrayIntegrate.js'
 
 const AlgMapping = {
     recursion: walkTreeDataWithRecursion,
@@ -100,8 +101,11 @@ class Tree {
     }
 }
 
-export default Tree
+// export default Tree
+export default {}
 
 export {
-    uniqConcat
+    Tree,
+    uniqConcat,
+    arrayIntegrate
 }

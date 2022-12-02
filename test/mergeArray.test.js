@@ -21,6 +21,6 @@ test('Test mergeArray', t => {
     const res = mergeArray(children1, children2, {
         key: 'name'
     })
-    console.log('res', JSON.stringify(res))
+    // console.log('res', JSON.stringify(res))
     t.end()
 })
