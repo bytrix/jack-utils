@@ -1,4 +1,4 @@
-const arrayIntegrate = (sourceArr, toBeIntegratedArr, config = {}) => {
+const arrayIntegrate = (sourceArr = [], toBeIntegratedArr = [], config = {}) => {
     const { match, properties } = config
     return sourceArr.map(sourceItem => {
         const foundTobeIntegratedItem = toBeIntegratedArr.find(toBeIntegratedItem => match(sourceItem, toBeIntegratedItem))

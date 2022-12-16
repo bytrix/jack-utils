@@ -1,5 +1,5 @@
 import { test } from 'tap'
-import Tree from '../src/index.js'
+import { Tree } from '../src/index.js'
 import realData from './realTreeData.js'
 import trimTreeData from './trimTreeData.js'
 

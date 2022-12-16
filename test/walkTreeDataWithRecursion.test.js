@@ -1,5 +1,5 @@
 import { test } from 'tap'
-import Tree from '../src/index.js'
+import { Tree } from '../src/index.js'
 import adGroupTreeData from './adGroupTreeData.js'
 
 const simpleTree = [

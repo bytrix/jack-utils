@@ -1,5 +1,5 @@
 // import mergeTree from "../src/utils/mergeTree.js";
-import Tree from '../src/index.js'
+import { Tree } from '../src/index.js'
 import { test } from 'tap'
 
 const realTree = [{
